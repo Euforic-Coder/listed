@@ -1,6 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <vector>
+#include <getopt.h>
+#include "uforia/uforia.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main(int argc, char * argv[]){
     switch (c)
       {
       case 'f':
-        flag_read = true;
+        flag_file = true;
 	read.open(optarg);
         break;
       case 'o':
@@ -38,7 +38,7 @@ int main(int argc, char * argv[]){
 		if(flag_include){
 			for(int i = 0; i < list.size(); ++i){
 				string line = list[i];
-				if(has(include, line)){
+				if(uforia::has(include, line)){
 					buffer.push_back(line);
 				}
 			}
@@ -46,7 +46,7 @@ int main(int argc, char * argv[]){
 			buffer.clear();
 		}
 
-		if(flag_sort()){
+		if(flag_sort){
 			sort(list.begin(), list.end());
 		}
 
