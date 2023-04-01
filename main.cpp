@@ -34,12 +34,41 @@ int main(int argc, char * argv[]){
 	break;
       }
 
-	if(flag_file){
-	
+	if(flag_file && read.good()){
+		if(flag_include){
+			for(int i = 0; i < list.size(); ++i){
+				string line = list[i];
+				if(has(include, line)){
+					buffer.push_back(line);
+				}
+			}
+			list = buffer;
+			buffer.clear();
+		}
+
+		if(flag_sort()){
+			sort(list.begin(), list.end());
+		}
+
+		if(flag_write){
+			for(int i = 0; i < list.size(); ++i){
+				string line = list[i];
+				write << line;
+			}
+			write.close();
+		}
+
+		for(int i = 0; i < list.size(); ++i){
+			string line = list[i];
+			cout << line << endl;
+		}
+
+		read.close();
 
 	}else{
 		cout << "No file given (-f)" << endl;
 		exit(0);
 	}
+
 	return 0;
 }
