@@ -3,7 +3,7 @@
 
 namespace uforia{
 
-  enum Color {Red, Green, Blue, Yellow, Magenta, Cyan, White, Black};
+  enum Color {Red, Green, Blue, Yellow, Magenta, Cyan, Grey};
   enum Style {Regular, Bold, Slim, Italic, Underline};
 
   std::string colored(std::string s, Color color, Style style = Regular){
@@ -29,6 +29,10 @@ namespace uforia{
       case Cyan:
         str_color = "36m";
         break;
+      case Grey:
+	str_color = "37m";
+	break;
+
       }
 
     // Set the style of the string
